@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contador</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Contador</h1>
+        <div id="contador">
+            <span id="horas">00</span>:<span id="minutos">00</span>:<span id="segundos">00</span>
+        </div>
+    </div>
+
+    <script>
+        let segundos = 0;
+        let minutos = 0;
+        let horas = 0;
+
+        function atualizarContador() {
+            segundos++;
+            if (segundos >= 60) {
+                segundos = 0;
+                minutos++;
+                if (minutos >= 60) {
+                    minutos = 0;
+                    horas++;
+                }
+            }
+
+            document.getElementById("horas").textContent = horas.toString().padStart(2, '0');
+            document.getElementById("minutos").textContent = minutos.toString().padStart(2, '0');
+            document.getElementById("segundos").textContent = segundos.toString().padStart(2, '0');
+        }
+
+        setInterval(atualizarContador, 1000);
+    </script>
+</body>
+</html>
